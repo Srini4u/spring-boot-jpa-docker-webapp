@@ -50,30 +50,47 @@
 	</dependencies>
 
 	<build>
-        <finalName>${project.artifactId}</finalName>
+        	<finalName>${project.artifactId}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-            <plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <version>0.3.8</version>
-                <configuration>
-                    <imageName>champ45/${project.artifactId}</imageName>
-                    <dockerDirectory>src/main/docker</dockerDirectory>
-                    <resources>
-                        <resource>
-                            <targetPath>/</targetPath>
-                            <directory>${project.build.directory}</directory>
-                            <include>${project.build.finalName}.jar</include>
-                        </resource>
-                    </resources>
-                </configuration>
-            </plugin>
+                        <plugin>
+		                <groupId>com.spotify</groupId>
+		                <artifactId>docker-maven-plugin</artifactId>
+		                <version>0.4.10</version>
+		                <executions>
+			                <execution>
+			                    <phase>package</phase>
+			                    <goals>
+			                        <goal>build</goal>
+			                    </goals>
+			                </execution>
+		            	</executions>
+		                <configuration>
+		                    <imageName>http://192.168.99.100:2375/champ45/${project.artifactId}:latest</imageName>
+		                    <baseImage>java</baseImage>
+		                    <dockerDirectory>src/main/docker</dockerDirectory>
+		                    <pushImage>true</pushImage>
+		                    <resources>
+			                    <resource>
+			                        <targetPath>/</targetPath>
+			                        <directory>${project.basedir}</directory>
+			                        <excludes>
+			                            <exclude>target/**/*</exclude>
+			                            <exclude>pom.xml</exclude>
+			                            <exclude>*.iml</exclude>
+			                        </excludes>
+			                    </resource>
+		                        <resource>
+		                            <targetPath>/</targetPath>
+		                            <directory>${project.build.directory}</directory>
+		                            <include>${project.build.finalName}.jar</include>
+		                        </resource>
+		                    </resources>
+		                </configuration>
+            		</plugin>
 		</plugins>
 	</build>
-
-
 </project>
