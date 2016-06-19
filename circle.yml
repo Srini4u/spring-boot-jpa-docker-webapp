@@ -7,7 +7,7 @@ machine:
 dependencies:
   override:
     - docker info
-    - docker build -t champ45/spring-boot-jpa-docker-webapp .
+    - docker build -t champ45/spring-boot-jpa-docker-webapp -f ./Dockerfile .
 
 deployment:
   hub:
