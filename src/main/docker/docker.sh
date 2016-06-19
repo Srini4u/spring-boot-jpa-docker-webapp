@@ -13,4 +13,4 @@ docker run -d \
     --name spring-boot-jpa-docker-webapp \
     --link demo-mysql:mysql \
     -p 9090:9090 \
-    g00glen00b/spring-boot-jpa-docker-webapp
+    champ45/spring-boot-jpa-docker-webapp
