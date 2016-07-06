@@ -6,6 +6,7 @@ machine:
     
 dependencies:
   override:
+    - mvn  package install
     - docker info
     - docker build -t champ45/spring-boot-jpa-docker-webapp -f src/main/docker/Dockerfile .
 
