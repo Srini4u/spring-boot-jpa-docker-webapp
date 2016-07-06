@@ -8,7 +8,9 @@ dependencies:
   override:
     - mvn  package install
     - docker info
-    - docker build -t champ45/spring-boot-jpa-docker-webapp -f src/main/docker/Dockerfile .
+    - docker build -t champ45/spring-boot-jpa-docker-webapp -f Dockerfile .
+    # - docker build -t champ45/spring-boot-jpa-docker-webapp -f src/main/docker/Dockerfile .
+   
 
 deployment:
   hub:
